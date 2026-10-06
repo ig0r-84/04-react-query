@@ -8,7 +8,7 @@ import styles from "./App.module.css";
 import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import MovieModal from "../MovieModal/MovieModal";
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 import ReactPaginateModule from "react-paginate";
 import type { ComponentType } from "react";
@@ -30,6 +30,7 @@ function App() {
     queryKey: ["movies", query, page],
     queryFn: () => fetchMovies(query, page),
     enabled: query !== "",
+    placeholderData: keepPreviousData,
   });
 
   const handleSearch = (newQuery: string) => {
